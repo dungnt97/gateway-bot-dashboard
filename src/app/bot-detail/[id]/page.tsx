@@ -73,13 +73,10 @@ const BotDetails = (props: any) => {
 
     fetchLogsByBot();
 
-    const interval = setInterval(() => {
-      fetchLogsByBot();
-    }, 1000);
+    const interval = setInterval(fetchLogsByBot, 1000);
 
     return () => {
-      // Dừng interval khi component bị unmount
-      return () => clearInterval(interval);
+      clearInterval(interval);
     };
   }, [id]);
 
