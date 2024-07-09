@@ -14,10 +14,13 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/v1/auth/login", {
-        email: email,
-        password: password,
-      });
+      const response = await axios.post(
+        "https://gateway-bot-2fe620caabf4.herokuapp.com/v1/auth/login",
+        {
+          email: email,
+          password: password,
+        }
+      );
 
       console.log("Login successful:", response.data.tokens);
       const { access, refresh } = response.data.tokens;
@@ -27,7 +30,9 @@ const LoginPage = () => {
       setAlertMessage("Login successful!");
       setAlertType("success");
       setShowAlert(true);
-      window.location.replace("http://localhost:3001/bot-list");
+      window.location.replace(
+        "https://gateway-bot-dashboard.vercel.app/bot-list"
+      );
     } catch (error) {
       console.error("Error logging in:", error);
       setAlertMessage("Error logging in. Please try again.");

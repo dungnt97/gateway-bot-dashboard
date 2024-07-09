@@ -21,13 +21,13 @@ const CreateBotPage = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertType, setAlertType] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const accessToken = localStorage.getItem("accessToken");
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/v1/bot",
+        "https://gateway-bot-2fe620caabf4.herokuapp.com/v1/bot",
         {
           secretKey,
           type,

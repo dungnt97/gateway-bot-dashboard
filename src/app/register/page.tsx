@@ -15,7 +15,7 @@ const RegisterPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/v1/auth/register",
+        "https://gateway-bot-2fe620caabf4.herokuapp.com/v1/auth/register",
         {
           name,
           email,
@@ -24,7 +24,7 @@ const RegisterPage = () => {
       );
 
       setAlert("Registration successful");
-      window.location.replace("http://localhost:3001/login");
+      window.location.replace("https://gateway-bot-dashboard.vercel.app/login");
     } catch (error: any) {
       setError(error?.response?.data.message);
     }

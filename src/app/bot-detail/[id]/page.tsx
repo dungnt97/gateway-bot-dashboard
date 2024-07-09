@@ -29,11 +29,14 @@ const BotDetails = (props: any) => {
           return;
         }
 
-        const response = await axios.get(`http://localhost:3000/v1/bot/${id}`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const response = await axios.get(
+          `https://gateway-bot-2fe620caabf4.herokuapp.com/v1/bot/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
 
         setBot(response.data);
         setLoading(false);
@@ -56,11 +59,14 @@ const BotDetails = (props: any) => {
           return;
         }
 
-        const response = await axios.get(`http://localhost:3000/v1/log/${id}`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const response = await axios.get(
+          `https://gateway-bot-2fe620caabf4.herokuapp.com/v1/log/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
 
         setLogs(response.data);
         setLoading(false);
@@ -90,7 +96,7 @@ const BotDetails = (props: any) => {
       }
 
       const response = await axios.post(
-        `http://localhost:3000/v1/bot/${id}/run`,
+        `https://gateway-bot-2fe620caabf4.herokuapp.com/v1/bot/${id}/run`,
         {},
         {
           headers: {
@@ -118,7 +124,7 @@ const BotDetails = (props: any) => {
       }
 
       const response = await axios.post(
-        `http://localhost:3000/v1/bot/${id}/expire`,
+        `https://gateway-bot-2fe620caabf4.herokuapp.com/v1/bot/${id}/expire`,
         {},
         {
           headers: {

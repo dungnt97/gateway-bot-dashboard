@@ -18,11 +18,14 @@ const BotList = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:3000/v1/bot", {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const response = await axios.get(
+          "https://gateway-bot-2fe620caabf4.herokuapp.com/v1/bot",
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
         setBots(response.data.results);
         setLoading(false);
       } catch (err) {
