@@ -6,7 +6,7 @@ import axios from "axios";
 const BotList = () => {
   const [bots, setBots] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchBots = async () => {

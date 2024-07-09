@@ -8,7 +8,7 @@ const BotDetails = (props: any) => {
   const { id } = props.params;
   const [bot, setBot] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [runBot, setRunBot] = useState<any>(null);
   const [logs, setLogs] = useState<[]>([]);
   const scrollViewRef = useRef<HTMLDivElement>(null);
