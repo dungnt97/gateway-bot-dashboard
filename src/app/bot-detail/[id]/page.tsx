@@ -105,12 +105,11 @@ const BotDetails = (props: any) => {
         }
       );
 
-      setRunBot(response.data);
+      setRunBot("Run bot successfully");
       setLoading(false);
     } catch (err) {
-      setError("Error fetching bot details. Please try again later.");
+      setError(`Error when running bot:  ${err}`);
       setLoading(false);
-      console.error(err);
     }
   };
 
@@ -133,81 +132,120 @@ const BotDetails = (props: any) => {
         }
       );
 
-      setRunBot(response.data);
+      setRunBot("Expire bot successfully");
       setLoading(false);
     } catch (err) {
-      setError("Error fetching bot details. Please try again later.");
+      setError(`Error when expire bot:  ${err}`);
       setLoading(false);
-      console.error(err);
     }
   };
-
-  console.log(logs);
 
   return (
     <div className="flex flex-row justify-center items-center">
       <div className="flex flex-col items-center justify-center h-screen text-white">
         {loading ? (
           <p className="text-2xl font-bold">Loading...</p>
-        ) : error ? (
-          <p className="text-red-500 text-2xl font-bold">{error}</p>
         ) : (
-          <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-3xl">
-            <h1 className="text-3xl font-bold mb-4 text-black">{bot.name}</h1>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="font-bold text-black">Type:</p>
-                <p className="text-black">{bot.type}</p>
+          <>
+            {error && (
+              <div
+                className="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                role="alert"
+              >
+                <svg
+                  className="flex-shrink-0 inline w-4 h-4 me-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span className="sr-only">Info</span>
+                <div>
+                  <span className="font-medium">{error}</span>
+                </div>
               </div>
-              <div>
-                <p className="font-bold text-black">First Mint Token:</p>
-                <p className="text-black">{bot.firstMintToken}</p>
+            )}
+            {runBot && (
+              <div
+                className="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
+                role="alert"
+              >
+                <svg
+                  className="flex-shrink-0 inline w-4 h-4 me-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span className="sr-only">Info</span>
+                <div>
+                  <span className="font-medium">{runBot}</span>
+                </div>
               </div>
-              <div>
-                <p className="font-bold text-black">Second Mint Token:</p>
-                <p className="text-black">{bot.secondMintToken}</p>
+            )}
+            <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-3xl">
+              <h1 className="text-3xl font-bold mb-4 text-black">{bot.name}</h1>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="font-bold text-black">Type:</p>
+                  <p className="text-black">{bot.type}</p>
+                </div>
+                <div>
+                  <p className="font-bold text-black">First Mint Token:</p>
+                  <p className="text-black">{bot.firstMintToken}</p>
+                </div>
+                <div>
+                  <p className="font-bold text-black">Second Mint Token:</p>
+                  <p className="text-black">{bot.secondMintToken}</p>
+                </div>
+                <div>
+                  <p className="font-bold text-black">First Trade Price:</p>
+                  <p className="text-black">{bot.firstTradePrice}</p>
+                </div>
+                <div>
+                  <p className="font-bold text-black">
+                    Target Gain Percentage:
+                  </p>
+                  <p className="text-black">{bot.targetGainPercentage}</p>
+                </div>
+                <div>
+                  <p className="font-bold text-black">Initial Input Amount:</p>
+                  <p className="text-black">{bot.initialInputAmount}</p>
+                </div>
+                <div>
+                  <p className="font-bold text-black">Expires:</p>
+                  <p className="text-black">{bot.expires}</p>
+                </div>
               </div>
-              <div>
-                <p className="font-bold text-black">First Trade Price:</p>
-                <p className="text-black">{bot.firstTradePrice}</p>
-              </div>
-              <div>
-                <p className="font-bold text-black">Target Gain Percentage:</p>
-                <p className="text-black">{bot.targetGainPercentage}</p>
-              </div>
-              <div>
-                <p className="font-bold text-black">Initial Input Amount:</p>
-                <p className="text-black">{bot.initialInputAmount}</p>
-              </div>
-              <div>
-                <p className="font-bold text-black">Expires:</p>
-                <p className="text-black">{bot.expires}</p>
+              <div className="flex justify-between mt-6">
+                <button
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => run()}
+                >
+                  Run Bot
+                </button>
+                <button
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => expire()}
+                >
+                  Expire Bot
+                </button>
+                <button className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+                  Update Bot
+                </button>
+                <a
+                  href="/bot-list"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
+                >
+                  Back to bot list
+                </a>
               </div>
             </div>
-            <div className="flex justify-between mt-6">
-              <button
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                onClick={() => run()}
-              >
-                Run Bot
-              </button>
-              <button
-                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-                onClick={() => expire()}
-              >
-                Expire Bot
-              </button>
-              <button className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
-                Update Bot
-              </button>
-              <a
-                href="/bot-list"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
-              >
-                Back to bot list
-              </a>
-            </div>
-          </div>
+          </>
         )}
       </div>
       <div className="overflow-y-scroll w-96 h-96" ref={scrollViewRef}>
